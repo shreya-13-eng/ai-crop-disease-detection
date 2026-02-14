@@ -41,7 +41,10 @@ public class GeminiService {
             String prompt
     ){
         Content content = Content.fromParts(
-                Part.fromText(prompt)
+                Part.fromText(prompt),
+                Part.fromText("And write the response in pure html. " +
+                        "You can use tables and other attributes as much as you can." +
+                        "Don't write anything else the html code not a single word.")
         );
         try{
             GenerateContentResponse response  = geminiClient
