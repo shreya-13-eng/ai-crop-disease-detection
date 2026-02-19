@@ -16,45 +16,56 @@ public class GeminiService {
 
     public String predictDisease(
             byte[] imageByte
-    ){
+    ) {
         Content content = Content.fromParts(
-                Part.fromBytes(imageByte,"image/png"),
+                Part.fromBytes(imageByte, "image/png"),
                 Part.fromText("Can you describe the disease from which this plant is " +
                         "suffering from, and the detailed cure for that. Note if you can't predict just say no." +
-                        "And write the response in pure html. " +
-                        "You can use tables and other attributes as much as you can.")
+                        "And write the response in pure html, no code area, just plane html text." +
+                        "You can use tables and other attributes as much as you can."+
+                        "And write the response in pure html. Don't use any code area just pure text/html. " +
+                        "You can use tables and other attributes as much as you can." +
+                        "Don't write anything else the html code not a single word." +
+                        "Don't write the word html in the code just provide the code."
+
+                )
         );
-        try{
-            GenerateContentResponse response  = geminiClient
+        try {
+            GenerateContentResponse response = geminiClient
                     .models.generateContent(
                             "gemini-3-flash-preview",
                             content,
                             null
                     );
             return response.text();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public String generateResponse(
             String prompt
-    ){
+    ) {
+        ;
         Content content = Content.fromParts(
                 Part.fromText(prompt),
-                Part.fromText("And write the response in pure html. " +
-                        "You can use tables and other attributes as much as you can." +
-                        "Don't write anything else the html code not a single word.")
+                Part.fromText(
+                        "strict -- use  hindi language." +
+                                "And write the response in pure html. Don't use any code area just pure text/html. " +
+                                "You can use tables and other attributes as much as you can." +
+                                "Don't write anything else the html code not a single word." +
+                                "Don't write the word html in the code just provide the code."
+                )
         );
-        try{
-            GenerateContentResponse response  = geminiClient
+        try {
+            GenerateContentResponse response = geminiClient
                     .models.generateContent(
-                            "gemini-3-flash-preview",
+                            "gemini-1.5-flash",
                             content,
                             null
                     );
             return response.text();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
