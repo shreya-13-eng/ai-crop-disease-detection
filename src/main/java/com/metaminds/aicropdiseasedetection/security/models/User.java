@@ -28,6 +28,7 @@ public class User {
     private Instant createdAt;
     private Instant updatedAt;
     private boolean isActive;
+    private String role;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Farm> farm;

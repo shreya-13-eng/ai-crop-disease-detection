@@ -19,3 +19,7 @@ spring:
     username: postgres
     password: $Priy@2003*
     driver-class-name: org.postgresql.Driver
+
+  app:
+    jwtSecret : jf8qy83wfhewfh893yf9832y987y342982yhfjhr4309ruy3298453892rh382yhr8327y8293u089er32yu897y2u39
+    jwtExpirationMs : 86400000
