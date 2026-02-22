@@ -19,3 +19,7 @@ spring:
     username: postgres
     password: REMOVED
     driver-class-name: org.postgresql.Driver
+
+  app:
+    jwtSecret : REMOVED
+    jwtExpirationMs : 86400000

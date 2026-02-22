@@ -60,7 +60,7 @@ public class GeminiService {
         try {
             GenerateContentResponse response = geminiClient
                     .models.generateContent(
-                            "gemini-1.5-flash",
+                            "gemini-3-flash-preview",
                             content,
                             null
                     );
