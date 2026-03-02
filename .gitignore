@@ -35,4 +35,7 @@ build/
 
 # documentations
 Shreya's Project Authentication overview v1.docx
-.docx
+/.docx
+
+pom.xml
+src/main/resources/application.yaml
