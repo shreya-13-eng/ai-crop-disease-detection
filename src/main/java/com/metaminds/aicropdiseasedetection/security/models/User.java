@@ -30,6 +30,7 @@ public class User {
     private Instant updatedAt;
     private boolean isActive;
     private String role;
+    private Integer lastUsedOtp;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Farm> farm;

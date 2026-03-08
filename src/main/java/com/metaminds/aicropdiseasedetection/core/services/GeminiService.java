@@ -1,4 +1,4 @@
-package com.metaminds.aicropdiseasedetection.genAi;
+package com.metaminds.aicropdiseasedetection.core.services;
 
 import com.google.genai.Client;
 import com.google.genai.types.Content;

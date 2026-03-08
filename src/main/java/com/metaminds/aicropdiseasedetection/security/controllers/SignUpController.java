@@ -1,6 +1,7 @@
 package com.metaminds.aicropdiseasedetection.security.controllers;
 
 import com.metaminds.aicropdiseasedetection.security.dtos.NewUserDto;
+import com.metaminds.aicropdiseasedetection.security.dtos.OtpVerificationDto;
 import com.metaminds.aicropdiseasedetection.security.services.SignUpService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +31,28 @@ public class SignUpController {
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             Map<String, Object> map = new HashMap<>();
-            map.put("message","User not created");
-            map.put("error",e.getMessage());
+            map.put("message", "User not created");
+            map.put("error", e.getMessage());
             map.put("status", HttpStatus.BAD_REQUEST);
-            map.put("path","/sign-up");
-            return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+            map.put("path", "/sign-up");
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifytOtp(
+            @RequestBody OtpVerificationDto dto
+            ){
+        try {
+            var response = signUpService.verifyOtp(dto);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception e) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", "User not created");
+            map.put("error", e.getMessage());
+            map.put("status", HttpStatus.BAD_REQUEST);
+            map.put("path", "/verify-otp");
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
     }
 }
