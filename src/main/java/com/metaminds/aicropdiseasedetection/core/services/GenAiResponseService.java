@@ -1,6 +1,6 @@
-package com.metaminds.aicropdiseasedetection.services;
+package com.metaminds.aicropdiseasedetection.core.services;
 
-import com.metaminds.aicropdiseasedetection.genAi.GeminiService;
+import com.metaminds.aicropdiseasedetection.core.services.GeminiService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

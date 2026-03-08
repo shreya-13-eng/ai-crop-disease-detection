@@ -1,4 +1,4 @@
-package com.metaminds.aicropdiseasedetection.genAi;
+package com.metaminds.aicropdiseasedetection.core;
 
 import com.google.genai.Client;
 import org.springframework.context.annotation.Bean;

@@ -1,14 +1,19 @@
-package com.metaminds.aicropdiseasedetection.controllers;
+package com.metaminds.aicropdiseasedetection.core.controllers;
 
-import com.metaminds.aicropdiseasedetection.services.GenAiResponseService;
+import com.metaminds.aicropdiseasedetection.core.services.GenAiResponseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class GenAiResponseController {
@@ -31,6 +36,22 @@ public class GenAiResponseController {
             @RequestPart("image") MultipartFile image
     ) {
         try {
+            Path uploadPath = Paths.get("upload").toAbsolutePath().normalize();
+
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+            String originalName = image.getOriginalFilename();
+            String extension = "";
+
+            if (originalName != null && originalName.contains(".")) {
+                extension = originalName.substring(originalName.lastIndexOf("."));
+            }
+            String uuidFileName = UUID.randomUUID().toString() + extension;
+
+            Path filePath = uploadPath.resolve(uuidFileName);
+
+            Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
             return new ResponseEntity<>(genAiResponseService.predictDisease(image), HttpStatus.OK);
         } catch (Exception e) {
             Map<String, String> map = new HashMap<>();
@@ -38,4 +59,5 @@ public class GenAiResponseController {
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
     }
+
 }

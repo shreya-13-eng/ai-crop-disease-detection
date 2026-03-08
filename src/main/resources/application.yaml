@@ -23,3 +23,15 @@ spring:
   app:
     jwtSecret : jf8qy83wfhewfh893yf9832y987y342982yhfjhr4309ruy3298453892rh382yhr8327y8293u089er32yu897y2u39
     jwtExpirationMs : 86400000
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: { }
+    password: { }
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
