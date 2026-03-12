@@ -48,6 +48,7 @@ public class SignUpService {
                 .lastUsedOtp(Integer.valueOf(generatedOtp))
                 .isActive(true)
                 .build();
+        emailService.sendOtpMail(user.getEmail(),user.getLastUsedOtp());
         userRepository.save(user);
         return new SignUpResponse(
                 user.getEmail()

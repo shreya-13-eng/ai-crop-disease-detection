@@ -32,10 +32,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-# documentations
-Shreya's Project Authentication overview v1.docx
-/.docx
-
-pom.xml
-src/main/resources/application.yaml
