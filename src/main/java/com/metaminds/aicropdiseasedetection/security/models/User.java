@@ -19,6 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
+    @Column(unique = true)
     private String email;
     @Column(length = 12)
     private Long phoneNumber;
@@ -29,7 +30,7 @@ public class User {
     private Instant updatedAt;
     private boolean isActive;
     private String role;
-
+    private Integer lastUsedOtp;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Farm> farm;
 }
